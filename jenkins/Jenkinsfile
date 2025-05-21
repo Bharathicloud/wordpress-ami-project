@@ -1,0 +1,25 @@
+pipeline {
+  agent any
+
+  environment {
+    AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+    AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        git url: 'https://github.com/Bharathicloud/wordpress-ami-project.git', branch: 'main'
+      }
+    }
+
+    stage('Packer Build') {
+      steps {
+        dir('packer') {
+          sh 'packer init wordpress-ami.json'
+          sh 'packer build wordpress-ami.json'
+        }
+      }
+    }
+  }
+}
