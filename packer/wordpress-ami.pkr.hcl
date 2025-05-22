@@ -8,7 +8,7 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20250305"
+  ami_name      = "ubuntu/images/*ubuntu-jammy-22.04-amd64-server-"
   instance_type = "t2.micro"
   region        = "us-east-1"
   source_ami_filter {
