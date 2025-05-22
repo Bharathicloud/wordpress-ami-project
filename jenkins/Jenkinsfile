@@ -14,10 +14,11 @@ pipeline {
     }
 
     stage('Packer Build') {
-      steps {
-        dir('packer') {
-          sh 'packer init wordpress-ami.json'
-          sh 'packer build wordpress-ami.json'
+  steps {
+    dir('packer') {
+      sh 'packer init .'
+      sh 'packer validate wordpress-ami.pkr.hcl'
+      sh 'packer build wordpress-ami.pkr.hcl'
         }
       }
     }
