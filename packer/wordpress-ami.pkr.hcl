@@ -8,7 +8,7 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name = "my-ami-${formatdate("YYYYMMDD", timestamp())}"
+  ami_name = "wordpress-ami${formatdate("YYYYMMDDHHmmss", timestamp())}"
   instance_type = "t2.micro"
   region        = "us-east-1"
   source_ami_filter {
